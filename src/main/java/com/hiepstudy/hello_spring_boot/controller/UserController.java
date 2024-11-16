@@ -1,6 +1,7 @@
 package com.hiepstudy.hello_spring_boot.controller;
 
 import com.hiepstudy.hello_spring_boot.dto.request.UserCreationRequest;
+import com.hiepstudy.hello_spring_boot.dto.request.UserUpdateRequest;
 import com.hiepstudy.hello_spring_boot.entity.User;
 import com.hiepstudy.hello_spring_boot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +32,15 @@ public class UserController {
 
     }
 
+    @PutMapping("/{userId}")
+    User updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request){
+        return userService.updateUser(userId, request);
+
+    }
+
+    @DeleteMapping("/{userId}")
+    String deleteUser(@PathVariable String userId){
+        userService.deleteUser(userId);
+        return "User has been deleted.";
+    }
 }
